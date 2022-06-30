@@ -1,4 +1,4 @@
-{"movies":[
+const movies = [
     {
       "id": 1,
       "title": "The Shawshank Redemption",
@@ -91,4 +91,6 @@
         "Embeth Davidtz"
       ]
     }
-  ]}
+  ]
+
+  export default movies;
