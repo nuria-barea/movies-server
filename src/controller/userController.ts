@@ -4,8 +4,11 @@ import userModel from '../model/userModel';
 
 const userController = (req:Request,res:Response)=>{
 
-    const user:iUser = req.body;
-    const result = userModel.saveUser(user);
+    const {email,password}:iUser = req.body;
+    if(!email || !password){
+        res.status(400).json({message:'email or password missing'});
+    }
+    const result = userModel.saveUser({email,password});
 
     res.json(result);
 

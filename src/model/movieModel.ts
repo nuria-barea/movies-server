@@ -3,7 +3,7 @@ import movies from '../data/movies';
 class Movie{
 
     getMovies(){
-        console.log(movies);
+        // console.log(movies);
         return movies;
     }
     getMoviesByDuration(){

@@ -4,7 +4,7 @@ import iUser from "./interfaces/iUser";
 class User {
     saveUser(user:iUser){
         users.push(user);
-        console.log(users);
+        // console.log(users);
         return user;
     }
 }
