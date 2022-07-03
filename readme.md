@@ -1,11 +1,32 @@
-# MongoDB
+# pg
 
-1. Crear la bbdd en mongoAtlas.
-2. Crear un usuario de acceso a la bbdd.
-3. Manipular el archivo movie.json, eliminando el array y dejando solo los documentos, quitando las comas entre documentos.
-4. Copiar el comando del apartado cmdline tool para cargar datos:
-    ```bash
-    mongoimport --uri mongodb+srv://<USER>:<PASSWORD>@cluster0.pu8lus7.mongodb.net/movies --collection movies --file movies.json
-    ```
-5. añadir la url del servidor de mongodb(`mongodb+srv://<USER>:<PASSWORD>@cluster0.pu8lus7.mongodb.net`) a una variable `MONGODB_URL` dentro de un archivo `.env`
-6. Añadir el fichero `.env` al fichero `.gitignore`
+1. Crear la bbdd en pg.
+2. Hacer el diseño mediante la erd tool
+3. Generar sql en erd tool
+4. crear una tabla con los datos:
+   ```sql
+   create unlogged table customer_import (doc json);
+   ```
+5. pasar los datos del fichero movie.json a la tabla unlogged:
+   ```sql
+   \copy customer_import from 'movies.json'
+
+6. --INSERT INTO public.movie(
+--	id, title, poster, synopsis, genres, year, director, actors)
+--	select p.*
+--    from movie_import l
+--        cross join lateral json_populate_recordset(null::movie,doc) as p
+--     on conflict(id) do update
+--     set title = excluded.title;
+
+-- select * from movie;
+
+-- create sequence seq_user_id as int
+-- start 1
+-- increment 1
+-- minvalue 1
+-- owned by "user".id;
+-- nextval('seq_user_id'::regclass)
+--insert into "user" (email, password, name) values ('un@mail.com','1234','first');
+
+select * from "user";

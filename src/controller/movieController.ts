@@ -8,8 +8,8 @@ const movieController = async (req:Request,res:Response)=>{
             const result = await movieDAO.getMovies();
 
             result
-                ? res.status(201).json(result)
-                : res.status(500).send("Failed to create a new user.");
+                ? res.status(201).json(JSON.stringify(result))
+                : res.status(500).send("Failed to get data.");
 
     } catch (error: any) {
 
