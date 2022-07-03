@@ -12,7 +12,7 @@ app.use(userRoute);
 describe("POST /user", () => {
     describe("when passed a username and password", () => {
 
-        test('should respond with a 200 & content-type "application/json', async () => {
+        test('should respond with a 201 & content-type "application/json', async () => {
             const response = await request(app)
                 .post('/user')
                 .send({
@@ -20,15 +20,27 @@ describe("POST /user", () => {
                     password: "1234"
                 });
 
-            expect(response.status).toEqual(200);
+            expect(response.status).toEqual(201);
             expect(response.headers['content-type']).toContain('application/json');
         })
+        test('should respond with a json object that contains the id from the database. (probably jwt in the real world)', async () => {
+ 
+            const response = await request(app)
+                .post('/user')
+                .send({
+                    email: "mi@mail.com",
+                    password: "1234"
+                });
 
+            expect(response.status).toEqual(201);
+            expect(response.headers['content-type']).toContain('application/json');
+            expect(response.body.userId).toBeDefined();
 
         // should save the username and password in the database
         // should respond with a json object that contains the id from the database. (probably jwt in the real world)
     })
 
+})
     describe("when the email or password is missing", () => {
 
 
@@ -43,5 +55,4 @@ describe("POST /user", () => {
         // should return a json object that contains an error message.
         // should specify json as the content type in the http header.
     })
-
 })
