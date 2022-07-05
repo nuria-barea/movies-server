@@ -1,8 +1,9 @@
 import { Request, Response} from "express";
 import iMovie from "../model/interfaces/iMovie";
 import movieModel from '../model/movieModel';
-const movieController = (req:Request,res:Response)=>{
-    const movies:iMovie[] = movieModel.getMovies();
+
+const  movieController = async (req:Request,res:Response) =>{
+    const movies: any = movieModel.getMovies();
     res.json(movies);
 }
 

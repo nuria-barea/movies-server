@@ -1,13 +1,17 @@
-import movies from '../data/movies';
+//import movies from '../data/movies';
+import { connection } from "../services/databases.service";
 
 class Movie{
 
-    getMovies(){
+    async getMovies(){
         // console.log(movies);
-        return movies;
+        const collection = await connection();
+        const result = await collection.find();
+        return result.toArray();
     }
     getMoviesByDuration(){
     }
+
 }
 
 export default new Movie();
